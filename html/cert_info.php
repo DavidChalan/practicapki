@@ -108,5 +108,13 @@ foreach ($certData as $key => $value) {
 echo "</table>";
 
 ?>
+<?php
+$user = $certData['subject']['CN']; // Nombre del cliente
+$email = $certData['subject']['emailAddress']; // Correo del cliente
+$ip = $SERVER['REMOTE ADDR']; // IP del cliente
+$timestamp = date("Y-m-d H:i:s"); // Fecha y hora actuales
+$log_entry = "$marca de tiempo, $usuario, $correo electrónico, $ip\n";
+file_put_contents('/var/log/user_access.log', $log_entry, FILE_APPEND);
+?>
 </body>
 </html>
